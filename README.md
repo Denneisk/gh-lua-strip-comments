@@ -1,0 +1,1 @@
+# gh-lua-strip-comments
