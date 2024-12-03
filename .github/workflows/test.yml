@@ -1,0 +1,21 @@
+name: test
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@main
+
+    - name: Setup test
+      run: echo "this is--a test" > test.lua
+
+    - name: Run action
+      uses: './'
+      with:
+        include-c-style: true
+
+    - name: Finalize
+      run: '[[ $(cat test.lua) = "this is" ]] && echo "OK" || exit 1'
